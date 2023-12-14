@@ -48,14 +48,17 @@
             </div>
         </div>
         <div class="qnabtn_paging">
-            <a class="btn-writeq" href="/writeq">문의하기</a>
-            <br>
-            <th:block th:each="pageNumber:${#numbers.sequence(startPage, endPage+1)}">
-                <a class="paging-btn" th:if="${page}==${pageNumber}" style="font-weight: bold;"
-                    th:href="@{/counsel(page=${pageNumber})}" th:text="${pageNumber}"></a>
-                <a class="paging-btn" th:unless="${page}==${pageNumber}" th:href="@{/counsel(page=${pageNumber})}"
-                    th:text="${pageNumber}"></a>
-            </th:block>
+            <div class="div-writeqflex">
+                <a class="btn-writeq" href="/writeq">문의하기</a>
+            </div>
+            <div class="div_pageflex">
+                <th:block th:each="pageNumber:${#numbers.sequence(startPage, endPage+1)}">
+                    <a class="paging-btn" th:if="${page}==${pageNumber}" style="font-weight: bold;"
+                        th:href="@{/counsel(page=${pageNumber})}" th:text="${pageNumber}"></a>
+                    <a class="paging-btn" th:unless="${page}==${pageNumber}" th:href="@{/counsel(page=${pageNumber})}"
+                        th:text="${pageNumber}"></a>
+                </th:block>
+            </div>
         </div>
     </div>
 
