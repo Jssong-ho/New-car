@@ -1,24 +1,22 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 * {
-    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-body {
-    width: 100%;
-    height: 100vh;
-    display:flex;
+body{
+    display: flex;
     flex-direction: column;
-    
+    margin:0;
+    padding:0;
 }
-
+#navbar {
+    margin:0;
+}
 .dropdown {
     position: relative;
     width: 300px;
     height: 50px;
-    top: 140px;
-    left: 470px;
+    right:120px;
 }
 
 .dropdown.active ::before {
@@ -85,11 +83,6 @@ body {
 
 .date {
     padding: 20px 12px 12px 476px;
-}
-
-.form {
-    position: rela;
-    left: 1000px;
 }
 
 .modify_delete {
@@ -166,7 +159,7 @@ a.btn-writeq:disabled {
     touch-action: manipulation;
     white-space: pre;
 }
-a.a-amend{
+.a-amend{
     margin-right: 10px;
 }
 
@@ -187,9 +180,15 @@ a.a-amend{
     justify-content: center;
 }
 .div_writelist {
+    margin-top: 120px;
     position:relative;
-    margin: 30px;
-    height: 600px;
-    width:100%;
+    /* height: 530px; */
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#txtarea_admin{
+    width: 600px;
+    margin: 0;
 }

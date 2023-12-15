@@ -10,24 +10,30 @@
 </head>
 
 <body>
-    <div class="div_header">
+    <div class="header_container">
         <header id="navbar">
-            <a href="/" class="logo"><img src="images/newcar.png"></a>
-            <ul th:if="${session.user == null}">
-                <li><a href="/detail" class="active">소개</a></li>
-                <li><a href="/subpage">구독</a></li>
-                <li><a href="/guestboard">문의</a></li>
-                <li><a href="/login">로그인</a></li>
-            </ul>
-            <ul th:unless="${session.user == null}">
-                <li><a href="/detail" class="active">소개</a></li>
-                <li><a href="/subpage">구독</a></li>
-                <li><a href="/counsel">문의</a></li>
-                <li><a href="/myinfo">내소개</a></li>
-            </ul>
+          <a href="/" class="logo"><img src="images/newcar.png" ></a>
+          <ul th:if="${session.user == null}">
+            <li><a href="/detail" class="active">소개</a></li>
+            <li><a href="/subpage">구독</a></li>
+            <li><a href="/guestboard">문의</a></li>
+            <li><a href="/login">로그인</a></li>
+          </ul>
+          <ul th:if="${session.user != null} and ${session.user.userId!='admin'}">
+              <li><a href="/detail" class="active">소개</a></li>
+              <li><a href="/subpage">구독</a></li>
+              <li><a href="/counsel">문의</a></li>
+              <li><a href="/myinfo">내정보</a></li>
+          </ul>
+          <ul th:if="${session.user != null} and ${session.user.userId=='admin'}">
+            <li><a href="/detail" class="active">소개</a></li>
+            <li><a href="/subpage">구독</a></li>
+            <li><a href="/counsel">문의</a></li>
+            <li><a href="/usersub">구독내역 관리</a></li>
+        </ul>
         </header>
-    </div>
-    <div th:if="${session.user.userId eq 'admin'}" class="div-list">
+      </div>
+    <div th:if="${session.user.userId eq 'admin'}" class="div_list">
         <div class="div_writelist">
             <div th:each="QuestionBoard, state : ${qBoardList}" class="dropdown"
                 th:if="(${state.index}>=${page*6-6})and(${state.index}<${page*6})">
@@ -40,7 +46,7 @@
                     <div class="content" th:text="${QuestionBoard.content}"></div>
                     <form th:action="@{/writea}" method="post" class="form">
                         <div class="admin" th:text="${QuestionBoard.userId}"></div>
-                        <textarea name="answer" th:text="${QuestionBoard.answer}"></textarea>
+                        <textarea name="answer" id="txtarea_admin" th:text="${QuestionBoard.answer}"></textarea>
                         <input type="hidden" name="boardSeq" th:value="${QuestionBoard.boardSeq}">
                         <button class="a-amend">답변 작성</button>
                     </form>

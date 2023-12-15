@@ -19,13 +19,21 @@
             <li><a href="/guestboard">문의</a></li>
             <li><a href="/login">로그인</a></li>
           </ul>
-          <ul th:unless="${session.user == null}">
-              <li><a href="#" class="active">소개</a></li>
+          <ul th:if="${session.user != null} and ${session.user.userId!='admin'}">
+              <li><a href="/detail" class="active">소개</a></li>
               <li><a href="/subpage">구독</a></li>
               <li><a href="/counsel">문의</a></li>
-              <li><a href="/myinfo">내소개</a></li>
+              <li><a href="/myinfo">내정보</a></li>
           </ul>
+          <ul th:if="${session.user != null} and ${session.user.userId=='admin'}">
+            <li><a href="/detail" class="active">소개</a></li>
+            <li><a href="/subpage">구독</a></li>
+            <li><a href="/counsel">문의</a></li>
+            <li><a href="#">구독내역 관리</a></li>
+            <li><a href="/myinfo">관리자정보</a></li>
+        </ul>
         </header>
+      </div>
       
     <div class="wrapper">
         <section class="sec-myinfo">

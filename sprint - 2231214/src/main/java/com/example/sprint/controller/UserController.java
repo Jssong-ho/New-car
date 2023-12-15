@@ -233,6 +233,7 @@ public class UserController {
         String userId = ((User) session.getAttribute("user")).getUserId();
         User user = userRepository.findByUserId(userId);
         userRepository.delete(user);
+        session.invalidate();
         return "redirect:/";
     }
 
@@ -411,5 +412,18 @@ public class UserController {
     @GetMapping("/detail")
     public String detail() {
         return "html/detail";
+    }
+
+
+    // admin 관리자 계정
+    // 구독내역 관리
+    @GetMapping("usersub")
+    public String usersub(
+        Model model
+    ){
+        List<ServiceHistory> serviceHistories = serviceHistoryRepository.findAllByOrderBySubStartDesc();
+        model.addAttribute("serviceHistories", serviceHistories);
+        System.out.println(serviceHistories);
+        return "html/usersub";
     }
 }
